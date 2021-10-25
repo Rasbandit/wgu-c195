@@ -9,7 +9,7 @@ import java.sql.*;
 
 /** This class handles the database interactions dealing with appointments.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class DBAppointments
 {
 

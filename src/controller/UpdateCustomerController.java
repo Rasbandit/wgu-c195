@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'UPDATE CUSTOMER' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class UpdateCustomerController implements Initializable
 {
     Stage stage;
@@ -32,36 +32,27 @@ public class UpdateCustomerController implements Initializable
     /** Text field for customer id.*/
     @FXML
     private TextField idText;
-
     /** Text field for customer name.*/
     @FXML
     private TextField nameText;
-
     /** Text field for customer address.*/
     @FXML
     private TextField addressText;
-
     /** Combobox for selecting a country.*/
     @FXML
     private ComboBox<Country> countryComboBox;
-
     /** Combobox for selecting a division.*/
     @FXML
     private ComboBox<Division> divisionComboBox;
-
     /** Text field for customer postal code.*/
     @FXML
     private TextField postalCodeText;
-
     /** Text field for customer phone number.*/
     @FXML
     private TextField phoneText;
-
     /** Label of divisions.*/
     @FXML
     private Label divisionSwitchLabel;
-
-
 
     /** This method saves the customer to the database, and directs back to the 'CUSTOMERS' screen. It gives errors if invalid data is entered.
      *
@@ -121,13 +112,10 @@ public class UpdateCustomerController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("../view/ViewCustomers.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
-
-
         }
 
     }
@@ -157,7 +145,6 @@ public class UpdateCustomerController implements Initializable
             divisionSwitchLabel.setText("Province:");
         }
 
-
         if (country.getCountryId() == 1)
         {
             divisionComboBox.setItems(DBDivisions.getUSDivisions());
@@ -174,10 +161,6 @@ public class UpdateCustomerController implements Initializable
         {
             divisionComboBox.isDisabled();
         }
-
-
-
-
     }
 
 
@@ -220,7 +203,6 @@ public class UpdateCustomerController implements Initializable
             divisionSwitchLabel.setText("Province:");
         }
 
-
         if (country.getCountryId() == 1)
         {
             divisionComboBox.setItems(DBDivisions.getUSDivisions());
@@ -238,8 +220,6 @@ public class UpdateCustomerController implements Initializable
             divisionComboBox.isDisabled();
         }
 
-
-
         for(Division d : divisionComboBox.getItems())
         {
             if(customer.divisionId == d.getDivisionId())
@@ -248,10 +228,8 @@ public class UpdateCustomerController implements Initializable
                 break;
             }
         }
-
         postalCodeText.setText(customer.getPostalCode());
         phoneText.setText(customer.getPhone());
-
     }
 
 
@@ -266,5 +244,4 @@ public class UpdateCustomerController implements Initializable
     {
         countryComboBox.setItems(DBCountries.getAllCountries());
     }
-
 }

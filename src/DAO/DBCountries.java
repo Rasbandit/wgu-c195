@@ -10,7 +10,7 @@ import java.sql.*;
 
 /** This class handles the database interactions dealing with countries.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class DBCountries
 {
 

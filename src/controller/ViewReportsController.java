@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'REPORTS' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class ViewReportsController implements Initializable
 {
     Stage stage;
@@ -34,55 +34,42 @@ public class ViewReportsController implements Initializable
     /** Combobox for selecting a month.*/
     @FXML
     private ComboBox<String> monthComboBox;
-
     /** Combobox for selecting a type.*/
     @FXML
     private ComboBox<String> typeComboBox;
-
     /** Label for results of report 1. */
     @FXML
     private Label report1ResultsLabel;
-
     /** Table for appointment information. */
     @FXML
     private TableView<Appointment> report2;
-
     /** Table column for appointment id. */
     @FXML
     private TableColumn<Appointment, Integer> appointmentIdColumnReport2;
-
     /** Table column for appointment title. */
     @FXML
     private TableColumn<Appointment, String> appointmentTitleColumnReport2;
-
     /** Table column for appointment type. */
     @FXML
     private TableColumn<Appointment, String> appointmentTypeColumnReport2;
-
     /** Table column for appointment description. */
     @FXML
     private TableColumn<Appointment, String> appointmentDescriptionColumnReport2;
-
     /** Table column for appointment start time and date. */
     @FXML
     private TableColumn<Appointment, LocalDateTime> startColumnReport2;
-
     /** Table column for appointment end time and date. */
     @FXML
     private TableColumn<Appointment, LocalDateTime> endColumnReport2;
-
     /** Table column for customer id. */
     @FXML
     private TableColumn<Appointment, Integer> customerIdColumnReport2;
-
     /** Combobox for selecting a contact.*/
     @FXML
     private ComboBox<Contact> contactComboBox;
-
     /** Label for results of report 3. */
     @FXML
     private Label report3ResultsLabel;
-
 
     /**
      * This method the runs the first report, displaying the number of appointments by month and type.
@@ -92,7 +79,6 @@ public class ViewReportsController implements Initializable
     @FXML
     void onActionRunReport1(ActionEvent event)
     {
-
         String month = monthComboBox.getValue();
         if (month == null)
         {
@@ -108,7 +94,6 @@ public class ViewReportsController implements Initializable
         int total = DBAppointments.getMonthAndTypeCount(month, type);
 
         report1ResultsLabel.setText(String.valueOf(total));
-
     }
 
 
@@ -122,8 +107,6 @@ public class ViewReportsController implements Initializable
     @FXML
     void onActionRunReport2(ActionEvent event)
     {
-
-
         Contact contact = contactComboBox.getValue();
 
         if (contact == null)
@@ -142,11 +125,6 @@ public class ViewReportsController implements Initializable
         });
 
         report2.setItems(cList);
-
-
-
-
-
     }
 
 
@@ -158,9 +136,7 @@ public class ViewReportsController implements Initializable
     @FXML
     void onActionRunReport3(ActionEvent event)
         {
-
             report3ResultsLabel.setText(String.valueOf(DBCustomers.getAllCustomers().size()));
-
         }
 
 
@@ -192,7 +168,6 @@ public class ViewReportsController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         appointmentIdColumnReport2.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         appointmentTitleColumnReport2.setCellValueFactory(new PropertyValueFactory<>("title"));
         appointmentDescriptionColumnReport2.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -201,11 +176,9 @@ public class ViewReportsController implements Initializable
         endColumnReport2.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerIdColumnReport2.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
-
         monthComboBox.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
         typeComboBox.setItems(DBAppointments.getAllTypes());
 
         contactComboBox.setItems(DBContacts.getAllContacts());
-
     }
 }

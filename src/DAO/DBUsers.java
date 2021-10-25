@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 /** This class handles the database interactions dealing with users.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class DBUsers
 {
 

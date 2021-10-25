@@ -18,10 +18,9 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'MAIN MENU' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class MainMenuController implements Initializable
 {
-
     Stage stage;
     Parent scene;
 
@@ -94,8 +93,6 @@ public class MainMenuController implements Initializable
         }
     }
 
-
-
     /** This method initializes the 'MAIN MENU' screen.
      *
      * @param url The location.
@@ -103,9 +100,6 @@ public class MainMenuController implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
 
     }
 }

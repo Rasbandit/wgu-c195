@@ -3,7 +3,7 @@ package model;
 
 /** This class handles the contact.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class Contact
 {
     public int contactId;

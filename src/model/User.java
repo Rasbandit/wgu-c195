@@ -3,7 +3,7 @@ package model;
 
 /** This class handles the user.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class User
 {
     public int userId;

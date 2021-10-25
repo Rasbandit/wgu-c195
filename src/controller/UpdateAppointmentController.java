@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'UPDATE APPOINTMENT' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class UpdateAppointmentController implements Initializable
 {
 
@@ -33,59 +33,45 @@ public class UpdateAppointmentController implements Initializable
     /** Table for customer information. */
     @FXML
     private TableView<Customer> customerTable;
-
     /** Table column for customer id. */
     @FXML
     private TableColumn<Customer, Integer> customerIdColumn;
-
     /** Table column for customer name. */
     @FXML
     private TableColumn<Customer, String> customerNameColumn;
-
     /** Text field for appointment id.*/
     @FXML
     private TextField appointmentIdText;
-
     /** Text field for appointment title.*/
     @FXML
     private TextField titleText;
-
     /** Text field for appointment description.*/
     @FXML
     private TextField descriptionText;
-
     /** Text field for appointment location.*/
     @FXML
     private TextField locationText;
-
     /** Combobox for selecting a contact.*/
     @FXML
     private ComboBox<Contact> contactComboBox;
-
     /** Text field for appointment type.*/
     @FXML
     private TextField typeText;
-
     /** Combobox for selecting an appointment start time.*/
     @FXML
     private ComboBox<LocalTime> startTimeComboBox;
-
     /** Combobox for selecting an appointment end time.*/
     @FXML
     private ComboBox<LocalTime> endTimeComboBox;
-
     /** Date picker for selecting an appointment date.*/
     @FXML
     private DatePicker datePicker;
-
     /** Text field for customer id.*/
     @FXML
     private TextField customerId;
-
     /** Combobox for selecting a user.*/
     @FXML
     private ComboBox<User> userIdComboBox;
-
 
     /**
      * This method fills the customer id text field from a selected customer in the table.
@@ -96,7 +82,6 @@ public class UpdateAppointmentController implements Initializable
     void onMouseClickFillCustomerTextField(MouseEvent event)
     {
         customerId.setText(String.valueOf(customerTable.getSelectionModel().getSelectedItem().getCustomerId()));
-
     }
 
 
@@ -116,7 +101,6 @@ public class UpdateAppointmentController implements Initializable
 
         Optional<ButtonType> result = alert.showAndWait();
 
-
         if (result.isPresent() && result.get() == ButtonType.OK)
         {
             String customer_Id = customerId.getText();
@@ -132,7 +116,6 @@ public class UpdateAppointmentController implements Initializable
             User userId = userIdComboBox.getValue();
             int appointment_Id = Integer.parseInt(appointmentIdText.getText());
 
-
             if (contact!=null && !type.isEmpty() && date!=null && st!=null && et!=null && !customer_Id.isEmpty() && userId!=null)
             {
 
@@ -140,11 +123,9 @@ public class UpdateAppointmentController implements Initializable
                 Timestamp end = Timestamp.valueOf(LocalDateTime.of( date, endTimeComboBox.getValue()));
                 int cId = Integer.parseInt(customer_Id);
 
-
                 if (LocalDateTime.of(date, endTimeComboBox.getValue()).isAfter(LocalDateTime.of(date, startTimeComboBox.getValue())))
                 {
                     Appointment newAppointment = new Appointment(appointment_Id, title, description, location, contact.getContactId(), contact.getContactName(), type, start, end, cId, userId.getUserId());
-
 
                     if (DBAppointments.checkForOverlappingAppointment(newAppointment))
                     {
@@ -157,7 +138,6 @@ public class UpdateAppointmentController implements Initializable
                     else {
 
                         DBAppointments.updateAppointment(title, description, location, type, start, end, cId, userId.getUserId(), contact.getContactId(), appointment_Id);
-
 
                         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
                         scene = FXMLLoader.load(getClass().getResource("../view/ViewAppointments.fxml"));
@@ -199,14 +179,11 @@ public class UpdateAppointmentController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("../view/ViewAppointments.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
-
         }
-
     }
 
 
@@ -272,12 +249,8 @@ public class UpdateAppointmentController implements Initializable
 
         customerTable.setItems(DBCustomers.getAllCustomers());
 
-
         contactComboBox.setItems(DBContacts.getAllContacts());
         userIdComboBox.setItems(DBUsers.getAllUsers());
-
-
-
 
         LocalTime appointmentStartTimeMinEST = LocalTime.of(8, 0);
         LocalDateTime startMinEST = LocalDateTime.of(LocalDate.now(), appointmentStartTimeMinEST);
@@ -297,7 +270,6 @@ public class UpdateAppointmentController implements Initializable
             appointmentStartTimeMin = appointmentStartTimeMin.plusMinutes(15);
         }
 
-
         LocalTime appointmentEndTimeMinEST = LocalTime.of(8, 15);
         LocalDateTime endMinEST = LocalDateTime.of(LocalDate.now(), appointmentEndTimeMinEST);
         ZonedDateTime endMinZDT = endMinEST.atZone(ZoneId.of("America/New_York"));
@@ -315,7 +287,5 @@ public class UpdateAppointmentController implements Initializable
             endTimeComboBox.getItems().add(appointmentEndTimeMin);
             appointmentEndTimeMin = appointmentEndTimeMin.plusMinutes(15);
         }
-
     }
-
 }

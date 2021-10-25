@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'LOGIN' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class LoginController implements Initializable
 {
     Stage stage;
@@ -39,39 +39,30 @@ public class LoginController implements Initializable
     /** Button for logging in. */
     @FXML
     private Button loginButton;
-
     /** Label for title. */
     @FXML
     private Label titleLabel;
-
     /** Button for exiting. */
     @FXML
     private Button exitButton;
-
     /** Label for sub-title. */
     @FXML
     private Label subtitleLabel;
-
     /** Label for zoneid. */
     @FXML
     private Label zoneIdLabel;
-
     /** Label for zoneid switch label. */
     @FXML
     private Label switchLabelZoneId;
-
     /** Label for user name. */
     @FXML
     private Label usernameLabel;
-
     /** Text field for username. */
     @FXML
     private TextField usernameText;
-
     /** Label for password. */
     @FXML
     private Label passwordLabel;
-
     /** Text field for password. */
     @FXML
     private TextField passwordText;
@@ -80,8 +71,6 @@ public class LoginController implements Initializable
     private String confirmExit;
     private String invalidLoginData;
     private String pleaseEnterValid;
-
-
 
     /**
      * This method authenticates the user name and password, and tracks the user activity by recording user login attempts to a text file.
@@ -101,7 +90,6 @@ public class LoginController implements Initializable
         LocalDateTime ldt = LocalDateTime.now();
         String s = dtf.format(ldt);
 
-
         int userId = DBUsers.validateUser(username, password);
 
         FileWriter fWriter = new FileWriter("login_activity.txt", true);
@@ -109,7 +97,6 @@ public class LoginController implements Initializable
 
         if (userId > 0)
         {
-
 
             outputFile.println(s + " " + usernameText.getText() + " successfully logged in");
             outputFile.close();
@@ -175,11 +162,7 @@ public class LoginController implements Initializable
                 usernameText.clear();
                 passwordText.clear();
             }
-
         }
-
-
-
     }
 
 
@@ -198,14 +181,12 @@ public class LoginController implements Initializable
     {
         if(event.getCode().equals(KeyCode.ENTER))
         {
-
             String username = usernameText.getText();
             String password = passwordText.getText();
 
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime ldt = LocalDateTime.now();
             String s = dtf.format(ldt);
-
 
             int userId = DBUsers.validateUser(username, password);
 
@@ -214,8 +195,6 @@ public class LoginController implements Initializable
 
             if (userId > 0)
             {
-
-
                 outputFile.println(s + " " + usernameText.getText() + " successfully logged in");
                 outputFile.close();
 
@@ -224,13 +203,11 @@ public class LoginController implements Initializable
                 ObservableList<Appointment> aList = DBAppointments.getAllAppointments();
                 ObservableList<Appointment> uList = aList.filtered(ap ->
                 {
-
                     if (ap.getUserId() == userId)
                     {
                         return true;
                     }
                     return false;
-
                 });
 
                 boolean name = false;
@@ -260,7 +237,6 @@ public class LoginController implements Initializable
 
                 }
 
-
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
                 stage.setScene(new Scene(scene));
@@ -282,13 +258,9 @@ public class LoginController implements Initializable
                     usernameText.clear();
                     passwordText.clear();
                 }
-
             }
         }
     }
-
-
-
 
     /** This method exits the application.
      *
@@ -306,7 +278,6 @@ public class LoginController implements Initializable
         if (result.isPresent() && result.get() == ButtonType.OK) {
             ((Button)(event.getSource())).getScene().getWindow().hide();
         }
-
     }
 
 
@@ -319,10 +290,8 @@ public class LoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
         try
         {
-
             ResourceBundle rb = ResourceBundle.getBundle("languages/language", Locale.getDefault());
 
             if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("fr"))
@@ -339,18 +308,11 @@ public class LoginController implements Initializable
                 confirmExit = rb.getString("confirmExit");
                 invalidLoginData = rb.getString("invalidLoginData");
                 pleaseEnterValid = rb.getString("pleaseEnterValid");
-
             }
         }
         catch (Exception e)
         {
             System.out.println();
         }
-
-
-
     }
-
-
-
 }

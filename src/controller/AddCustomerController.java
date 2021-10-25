@@ -21,40 +21,32 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'ADD CUSTOMER' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class AddCustomerController implements Initializable
 {
     Stage stage;
     Parent scene;
-
     /** Text field for customer id.*/
     @FXML
     private TextField customerIdText;
-
     /** Text field for customer name.*/
     @FXML
     private TextField nameText;
-
     /** Text field for customer address.*/
     @FXML
     private TextField addressText;
-
     /** Combobox for selecting a country.*/
     @FXML
     private ComboBox<Country> countryComboBox;
-
     /** Combobox for selecting a division.*/
     @FXML
     private ComboBox<Division> divisionComboBox;
-
     /** Text field for customer postal code.*/
     @FXML
     private TextField postalCodeText;
-
     /** Text field for customer phone number.*/
     @FXML
     private TextField phoneText;
-
     /** Label of divisions.*/
     @FXML
     private Label divisionSwitchLabel;
@@ -82,7 +74,6 @@ public class AddCustomerController implements Initializable
             String postalCode = postalCodeText.getText();
             String phone = phoneText.getText();
             Division division = divisionComboBox.getValue();
-
 
             if (!customerName.isEmpty() && !address.isEmpty() && !postalCode.isEmpty() && !phone.isEmpty() && !(division == null))
             {
@@ -169,12 +160,7 @@ public class AddCustomerController implements Initializable
         {
             divisionComboBox.isDisabled();
         }
-
-
-
-
     }
-
 
 /**
  * This method initializes the 'ADD CUSTOMER' screen. It populates the country combobox, and clears the contents of the division combobox.
@@ -185,17 +171,7 @@ public class AddCustomerController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
-
         countryComboBox.setItems(DBCountries.getAllCountries());
         divisionComboBox.getSelectionModel().clearSelection();
-
-
-
-
-
-
-
     }
-
 }

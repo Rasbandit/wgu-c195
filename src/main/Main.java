@@ -18,7 +18,7 @@ import java.util.Locale;
  *
  * </b></p>
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class Main extends Application
 {
 

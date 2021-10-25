@@ -3,7 +3,7 @@ package model;
 
 /** This class handles the division.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class Division
 {
     private int divisionId;

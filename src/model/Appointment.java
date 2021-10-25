@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 /** This class handles the appointment.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class Appointment
 {
     public int appointmentId;

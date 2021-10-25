@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'VIEW APPOINTMENTS' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class ViewAppointmentsController implements Initializable
 {
     Stage stage;
@@ -32,59 +32,45 @@ public class ViewAppointmentsController implements Initializable
     /** Table for appointment information. */
     @FXML
     private TableView<Appointment> appointmentTable;
-
     /** Table column for appointment id. */
     @FXML
     private TableColumn<Appointment, Integer> appointmentIdColumn;
-
     /** Table column for appointment title. */
     @FXML
     private TableColumn<Appointment, String> titleColumn;
-
     /** Table column for appointment description. */
     @FXML
     private TableColumn<Appointment, String> descriptionColumn;
-
     /** Table column for appointment location. */
     @FXML
     private TableColumn<Appointment, String> locationColumn;
-
     /** Table column for appointment contact. */
     @FXML
     private TableColumn<Appointment, String> contactColumn;
-
     /** Table column for appointment type. */
     @FXML
     private TableColumn<Appointment, String> typeColumn;
-
     /** Table column for appointment start time and date. */
     @FXML
     private TableColumn<Appointment, LocalDateTime> startColumn;
-
     /** Table column for appointment end time and date. */
     @FXML
     private TableColumn<Appointment, LocalDateTime> endColumn;
-
     /** Table column for customer id. */
     @FXML
     private TableColumn<Appointment, Integer> customerIdColumn;
-
     /** Radio button for viewing appointments in current week. */
     @FXML
     private RadioButton viewByWeekRadioButton;
-
     /** Radio button for viewing appointments in current month. */
     @FXML
     private RadioButton viewByMonthRadioButton;
-
     /** Radio button for viewing all appointments. */
     @FXML
     private RadioButton viewAllRadioButton;
-
     /** Radio button toggle group to ensure only button can be selected at a time. */
     @FXML
     private ToggleGroup viewToggleGroup;
-
 
     /**
      * This method shows all appointments in the table.
@@ -118,7 +104,6 @@ public class ViewAppointmentsController implements Initializable
     {
         appointmentTable.setItems(DBAppointments.getWeekAppointments());
     }
-
 
     /**
      * This method deletes an appointment from the database.
@@ -158,7 +143,6 @@ public class ViewAppointmentsController implements Initializable
 
                 appointmentTable.setItems(DBAppointments.getAllAppointments());
 
-
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setHeaderText("DELETED");
                 alert2.setContentText("You have successfully deleted appointment " + idMessage + ", a " + typeMessage + " appointment.");
@@ -173,10 +157,7 @@ public class ViewAppointmentsController implements Initializable
 
                 alert3.showAndWait();
             }
-
-
         }
-
     }
 
     /**
@@ -271,18 +252,5 @@ public class ViewAppointmentsController implements Initializable
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
         appointmentTable.setItems(DBAppointments.getAllAppointments());
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 }

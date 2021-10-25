@@ -2,7 +2,7 @@ package model;
 
 /** This class handles the country.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class Country
 {
     private int countryId;

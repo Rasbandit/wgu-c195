@@ -7,16 +7,14 @@ import java.sql.SQLException;
 
 /** This class handles the database connection.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class DBConnection
 {
-
     //JDBC URL parts
     private static String protocol = "jdbc";
     private static String vendorName = ":mysql:";
     private static String ipAddress = "//localhost:3306/";
     private static String dbName = "client_schedule";
-
 
     //JDBC URL
     private static String jdbcURL = protocol + vendorName + ipAddress + dbName;

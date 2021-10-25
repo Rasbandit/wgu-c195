@@ -21,42 +21,33 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'VIEW CUSTOMERS' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class ViewCustomersController implements Initializable
 {
     Stage stage;
     Parent scene;
 
-
     /** Table for customer information. */
     @FXML
     private TableView<Customer> customerTable;
-
     /** Table column for customer id. */
     @FXML
     private TableColumn<Customer, Integer> idColumn;
-
     /** Table column for customer name. */
     @FXML
     private TableColumn<Customer, String> nameColumn;
-
     /** Table column for customer address. */
     @FXML
     private TableColumn<Customer, String> addressColumn;
-
     /** Table column for customer division. */
     @FXML
     private TableColumn<Customer, Integer> divisionColumn;
-
     /** Table column for customer postal code. */
     @FXML
     private TableColumn<Customer, String> postalCodeColumn;
-
     /** Table column for customer phone number. */
     @FXML
     private TableColumn<Customer, String> phoneColumn;
-
-
 
     /**
      * This method deletes a customer from the database.
@@ -107,13 +98,7 @@ public class ViewCustomersController implements Initializable
 
                 alert3.showAndWait();
             }
-
-
         }
-
-
-
-
     }
 
 
@@ -162,7 +147,6 @@ public class ViewCustomersController implements Initializable
             UpdateCustomerController ADMController = loader.getController();
             ADMController.sendCustomer(customerTable.getSelectionModel().getSelectedItem());
 
-
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
@@ -170,7 +154,6 @@ public class ViewCustomersController implements Initializable
         }
 
     }
-
 
     /**
      * This method sends the user to the 'MAIN MENU' screen.
@@ -185,9 +168,7 @@ public class ViewCustomersController implements Initializable
         scene = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
-
     }
-
 
     /**
      * This method initializes the 'VIEW CUSTOMERS' screen. It populates the customer table with all customers.
@@ -204,9 +185,7 @@ public class ViewCustomersController implements Initializable
         divisionColumn.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
         postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
-
+        
         customerTable.setItems(DBCustomers.getAllCustomers());
-
     }
-
 }

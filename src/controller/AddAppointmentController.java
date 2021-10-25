@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 /** This class controls the 'ADD APPOINTMENT' screen of my application.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class AddAppointmentController implements Initializable
 {
     Stage stage;
@@ -38,55 +38,42 @@ public class AddAppointmentController implements Initializable
     /** Table for customer information. */
     @FXML
     private TableView<Customer> customerTable;
-
     /** Table column for customer id. */
     @FXML
     private TableColumn<Customer, Integer> customerIdColumn;
-
     /** Table column for customer name. */
     @FXML
     private TableColumn<Customer, String> customerNameColumn;
-
     /** Text field for appointment id.*/
     @FXML
     private TextField appointmentIdText;
-
     /** Text field for appointment title.*/
     @FXML
     private TextField titleText;
-
     /** Text field for appointment description.*/
     @FXML
     private TextField descriptionText;
-
     /** Text field for appointment location.*/
     @FXML
     private TextField locationText;
-
     /** Combobox for selecting a contact.*/
     @FXML
     private ComboBox<Contact> contactComboBox;
-
     /** Text field for appointment type.*/
     @FXML
     private TextField typeText;
-
     /** Combobox for selecting an appointment start time.*/
     @FXML
     private ComboBox<LocalTime> startTimeComboBox;
-
     /** Combobox for selecting an appointment end time.*/
     @FXML
     private ComboBox<LocalTime> endTimeComboBox;
-
     /** Date picker for selecting an appointment date.*/
     @FXML
     private DatePicker datePicker;
-
     /** Text field for customer id.*/
     @FXML
     private TextField customerId;
-
     /** Combobox for selecting a user.*/
     @FXML
     private ComboBox<User> userIdComboBox;
@@ -115,7 +102,7 @@ public class AddAppointmentController implements Initializable
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("ARE YOU SURE?");
-        alert.setContentText("The new appointment will be added to the calendar, are you sure you want to continue?");
+        alert.setContentText("This will add a new Appointment to the calendar");
 
         Optional<ButtonType> result = alert.showAndWait();
 

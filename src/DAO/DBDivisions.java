@@ -9,7 +9,7 @@ import java.sql.*;
 
 /** This class handles the database interactions dealing with first level divisions.
  *
- * @author Ryan Zeigler*/
+ * @author Todd Rasband*/
 public class DBDivisions
 {
 
