@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsController">
+   <children>
+      <Label layoutX="428.0" layoutY="53.0" text="Reports" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="306.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/growth.png" />
+         </image>
+      </ImageView>
+      <TabPane layoutY="130.0" prefHeight="600.0" prefWidth="950.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Schedule">
+               <content>
+                  <AnchorPane prefHeight="200.0" style="-fx-background-color: grey;">
+                     <children>
+                        <TableView fx:id="scheduleTableView" layoutX="102.0" layoutY="117.0" prefHeight="334.0" prefWidth="746.0">
+                          <columns>
+                            <TableColumn fx:id="schedCustomerColumn" prefWidth="75.0" text="Customer" />
+                            <TableColumn fx:id="schedTitleColumn" prefWidth="75.0" text="Title" />
+                              <TableColumn fx:id="schedTypeColumn" prefWidth="75.0" text="Type" />
+                              <TableColumn fx:id="schedStartColumn" prefWidth="75.0" text="Start" />
+                              <TableColumn fx:id="schedEndColumn" prefWidth="75.0" text="End" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Label fx:id="consultantNameLabel" alignment="CENTER" layoutX="275.0" layoutY="52.0" prefHeight="27.0" prefWidth="400.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+               </content>
+          </Tab>
+          <Tab text="Appointment Types By Month">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                     <children>
+                        <TableView fx:id="typeByMonthTableView" layoutX="147.0" layoutY="105.0" prefHeight="359.0" prefWidth="655.0">
+                          <columns>
+                            <TableColumn fx:id="byMonthColumn" prefWidth="75.0" text="Month" />
+                            <TableColumn fx:id="byMonthTypeColumn" prefWidth="75.0" text="Appointment Type" />
+                              <TableColumn fx:id="byMonthTotalColumn" prefWidth="75.0" text="Total For Month" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Consultant Scoreboard">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="353.0" prefWidth="661.0" style="-fx-background-color: grey;">
+                     <children>
+                        <BarChart fx:id="scoreChart" layoutX="194.0" layoutY="56.0" prefHeight="457.0" prefWidth="562.0" style="-fx-background-color: white;">
+                          <xAxis>
+                            <CategoryAxis label="Consultants" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Appointments" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="738.0" layoutY="58.0" mnemonicParsing="false" onAction="#homeButtonPushed" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ff6600;" text="Home" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
