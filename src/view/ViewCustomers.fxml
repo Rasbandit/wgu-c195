@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: GRAY; -fx-border-color: BLUE; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCustomersController">
+    <children>
+        <Button layoutX="110.0" layoutY="100.0" mnemonicParsing="false" onAction="#onActionGoToAddCustomerScreen" prefHeight="30.0" prefWidth="170.0" text="ADD CUSTOMER">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Label layoutX="10.0" layoutY="10.0" text="CUSTOMERS">
+            <font>
+                <Font name="System Bold" size="30.0" />
+            </font>
+        </Label>
+        <Button layoutX="800.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionGoToMainMenu" prefHeight="30.0" prefWidth="190.0" text="BACK TO MAIN MENU">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <TableView fx:id="customerTable" layoutX="10.0" layoutY="200.0" prefHeight="390.0" prefWidth="980.0">
+            <columns>
+                <TableColumn fx:id="idColumn" minWidth="100.0" prefWidth="163.33" text="Customer_ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="163.33" text="Customer_Name" />
+                <TableColumn fx:id="addressColumn" prefWidth="163.33" text="Address" />
+                <TableColumn fx:id="divisionColumn" prefWidth="163.33" text="Division" />
+                <TableColumn fx:id="postalCodeColumn" prefWidth="163.33" text="Postal_Code" />
+                <TableColumn fx:id="phoneColumn" prefWidth="163.35" text="Phone" />
+            </columns>
+        </TableView>
+        <Button layoutX="700.0" layoutY="100.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="30.0" prefWidth="190.0" text="DELETE CUSTOMER">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Button layoutX="390.0" layoutY="100.0" mnemonicParsing="false" onAction="#onActionGoToUpdateCustomerScreen" prefHeight="30.0" prefWidth="200.0" text="UPDATE CUSTOMER">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
