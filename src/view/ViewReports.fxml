@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: GRAY; -fx-border-color: BLUE; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewReportsController">
+<AnchorPane prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: GRAY; -fx-border-color: BLUE; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewReportsController">
    <children>
       <Label layoutX="10.0" layoutY="10.0" prefWidth="140.0" text="REPORTS">
          <font>
