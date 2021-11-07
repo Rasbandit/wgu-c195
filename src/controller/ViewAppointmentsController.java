@@ -247,8 +247,8 @@ public class ViewAppointmentsController implements Initializable
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactColumn.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        startColumn.setCellValueFactory(new PropertyValueFactory<>("startTimeLocal"));
+        endColumn.setCellValueFactory(new PropertyValueFactory<>("endTimeLocal"));
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
         appointmentTable.setItems(DBAppointments.getAllAppointments());

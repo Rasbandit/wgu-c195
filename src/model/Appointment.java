@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 
 /** This class handles the appointment.
@@ -207,6 +209,26 @@ public class Appointment
      */
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    /**
+     * This method returns a human readable string version of the start_time formatted to the user's timezone
+     * @return a human readable start_time
+     */
+    public String getStartTimeLocal() {
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd 'at' h:mm a");
+        int timezone_offset = TimeZone.getDefault().getOffset(System.currentTimeMillis());
+        return date_format.format(new Timestamp(start.getTime() + timezone_offset));
+    }
+
+    /**
+     * This method returns a human readable string version of the end_time formatted to the user's timezone
+     * @return a human readable end_time
+     */
+    public String getEndTimeLocal() {
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd 'at' h:mm a");
+        int timezone_offset = TimeZone.getDefault().getOffset(System.currentTimeMillis());
+        return date_format.format(new Timestamp(end.getTime() + timezone_offset));
     }
 
 }
