@@ -16,9 +16,12 @@ import model.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.temporal.TemporalUnit;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 
 /** This class controls the 'UPDATE APPOINTMENT' screen of my application.
@@ -119,8 +122,10 @@ public class UpdateAppointmentController implements Initializable
             if (contact!=null && !type.isEmpty() && date!=null && st!=null && et!=null && !customer_Id.isEmpty() && userId!=null)
             {
 
-                Timestamp start = Timestamp.valueOf(LocalDateTime.of( date, startTimeComboBox.getValue()));
-                Timestamp end = Timestamp.valueOf(LocalDateTime.of( date, endTimeComboBox.getValue()));
+                int timezone_offset = TimeZone.getDefault().getOffset(System.currentTimeMillis());
+
+                Timestamp start = new Timestamp (Timestamp.valueOf(LocalDateTime.of( date, startTimeComboBox.getValue())).getTime() - timezone_offset);
+                Timestamp end = new Timestamp (Timestamp.valueOf(LocalDateTime.of( date, endTimeComboBox.getValue())).getTime() - timezone_offset);
                 int cId = Integer.parseInt(customer_Id);
 
                 if (LocalDateTime.of(date, endTimeComboBox.getValue()).isAfter(LocalDateTime.of(date, startTimeComboBox.getValue())))
@@ -214,10 +219,13 @@ public class UpdateAppointmentController implements Initializable
 
         typeText.setText(appointment.getType());
 
-        LocalTime setStart = appointment.getStart().toLocalDateTime().toLocalTime();
-        startTimeComboBox.setValue(setStart);
-        LocalTime setEnd = appointment.getEnd().toLocalDateTime().toLocalTime();
-        endTimeComboBox.setValue(setEnd);
+
+        int timezone_offset = TimeZone.getDefault().getOffset(System.currentTimeMillis());
+        LocalTime appointmentStartTime = new Timestamp(appointment.getStart().getTime() + timezone_offset).toLocalDateTime().toLocalTime();
+        LocalTime appointmentEndTime = new Timestamp(appointment.getEnd().getTime() + timezone_offset).toLocalDateTime().toLocalTime();
+
+        startTimeComboBox.setValue(appointmentStartTime);
+        endTimeComboBox.setValue(appointmentEndTime);
 
         LocalDate appointmentDate = appointment.getStart().toLocalDateTime().toLocalDate();
         datePicker.setValue(appointmentDate);
@@ -256,17 +264,17 @@ public class UpdateAppointmentController implements Initializable
         LocalDateTime startMinEST = LocalDateTime.of(LocalDate.now(), appointmentStartTimeMinEST);
         ZonedDateTime startMinZDT = startMinEST.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime startMinLocal = startMinZDT.withZoneSameInstant(ZoneId.systemDefault());
-        LocalTime appointmentStartTimeMin = startMinLocal.toLocalTime();
+        LocalDateTime appointmentStartTimeMin = startMinLocal.toLocalDateTime();
 
         LocalTime appointmentStartTimeMaxEST = LocalTime.of(21, 45);
         LocalDateTime startMaxEST = LocalDateTime.of(LocalDate.now(), appointmentStartTimeMaxEST);
         ZonedDateTime startMaxZDT = startMaxEST.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime startMaxLocal = startMaxZDT.withZoneSameInstant(ZoneId.systemDefault());
-        LocalTime appointmentStartTimeMax = startMaxLocal.toLocalTime();
+        LocalDateTime appointmentStartTimeMax = startMaxLocal.toLocalDateTime();
 
         while (appointmentStartTimeMin.isBefore(appointmentStartTimeMax.plusSeconds(1)))
         {
-            startTimeComboBox.getItems().add(appointmentStartTimeMin);
+            startTimeComboBox.getItems().add(appointmentStartTimeMin.toLocalTime());
             appointmentStartTimeMin = appointmentStartTimeMin.plusMinutes(15);
         }
 
@@ -274,17 +282,17 @@ public class UpdateAppointmentController implements Initializable
         LocalDateTime endMinEST = LocalDateTime.of(LocalDate.now(), appointmentEndTimeMinEST);
         ZonedDateTime endMinZDT = endMinEST.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime endMinLocal = endMinZDT.withZoneSameInstant(ZoneId.systemDefault());
-        LocalTime appointmentEndTimeMin = endMinLocal.toLocalTime();
+        LocalDateTime appointmentEndTimeMin = endMinLocal.toLocalDateTime();
 
         LocalTime appointmentEndTimeMaxEST = LocalTime.of(22, 0);
         LocalDateTime endMaxEST = LocalDateTime.of(LocalDate.now(), appointmentEndTimeMaxEST);
         ZonedDateTime endMaxZDT = endMaxEST.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime endMaxLocal = endMaxZDT.withZoneSameInstant(ZoneId.systemDefault());
-        LocalTime appointmentEndTimeMax = endMaxLocal.toLocalTime();
+        LocalDateTime appointmentEndTimeMax = endMaxLocal.toLocalDateTime();
 
         while (appointmentEndTimeMin.isBefore(appointmentEndTimeMax.plusSeconds(1)))
         {
-            endTimeComboBox.getItems().add(appointmentEndTimeMin);
+            endTimeComboBox.getItems().add(appointmentEndTimeMin.toLocalTime());
             appointmentEndTimeMin = appointmentEndTimeMin.plusMinutes(15);
         }
     }

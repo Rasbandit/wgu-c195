@@ -172,8 +172,8 @@ public class ViewReportsController implements Initializable
         appointmentTitleColumnReport2.setCellValueFactory(new PropertyValueFactory<>("title"));
         appointmentDescriptionColumnReport2.setCellValueFactory(new PropertyValueFactory<>("description"));
         appointmentTypeColumnReport2.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startColumnReport2.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endColumnReport2.setCellValueFactory(new PropertyValueFactory<>("end"));
+        startColumnReport2.setCellValueFactory(new PropertyValueFactory<>("startTimeLocal"));
+        endColumnReport2.setCellValueFactory(new PropertyValueFactory<>("endTimeLocal"));
         customerIdColumnReport2.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
         monthComboBox.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));

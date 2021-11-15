@@ -216,7 +216,7 @@ public class Appointment
      * @return a human readable start_time
      */
     public String getStartTimeLocal() {
-        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd 'at' h:mm a");
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd 'at' H:mm");
         int timezone_offset = TimeZone.getDefault().getOffset(System.currentTimeMillis());
         return date_format.format(new Timestamp(start.getTime() + timezone_offset));
     }
@@ -226,7 +226,7 @@ public class Appointment
      * @return a human readable end_time
      */
     public String getEndTimeLocal() {
-        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd 'at' h:mm a");
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd 'at' H:mm");
         int timezone_offset = TimeZone.getDefault().getOffset(System.currentTimeMillis());
         return date_format.format(new Timestamp(end.getTime() + timezone_offset));
     }
