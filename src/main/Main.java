@@ -21,8 +21,6 @@ import java.util.Locale;
  * @author Todd Rasband*/
 public class Main extends Application
 {
-
-
     /** This method sets up the initial JavaFX application stage.
      *
      * @param primaryStage The primary stage to be set.
@@ -48,14 +46,9 @@ public class Main extends Application
      */
     public static void main(String[] args) throws SQLException
     {
-
         // The following two lines were used for testing purposes
         //Locale.setDefault(new Locale("fr"));
         //System.setProperty("user.timezone", "America/New_York");
-
-
-
-
 
         DBConnection.startConnection();
 
@@ -64,6 +57,4 @@ public class Main extends Application
         DBConnection.endConnection();
 
     }
-
-
 }

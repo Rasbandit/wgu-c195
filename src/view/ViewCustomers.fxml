@@ -4,10 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: GRAY; -fx-border-color: BLUE; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCustomersController">
+<AnchorPane maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: GRAY; -fx-border-color: BLUE; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCustomersController">
     <children>
         <Button layoutX="110.0" layoutY="100.0" mnemonicParsing="false" onAction="#onActionGoToAddCustomerScreen" prefHeight="30.0" prefWidth="170.0" text="ADD CUSTOMER">
             <font>
@@ -44,5 +45,6 @@
                 <Font size="16.0" />
             </font>
         </Button>
+      <TextField fx:id="searchFieldId" layoutX="700.0" layoutY="154.0" promptText="Search" />
     </children>
 </AnchorPane>

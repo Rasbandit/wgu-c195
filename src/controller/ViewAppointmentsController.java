@@ -1,6 +1,8 @@
 package controller;
 
 import DAO.DBAppointments;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import model.Appointment;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -28,6 +31,9 @@ public class ViewAppointmentsController implements Initializable
     Stage stage;
     Parent scene;
 
+    /** Search field for appointments */
+    @FXML
+    private TextField searchFieldId;
 
     /** Table for appointment information. */
     @FXML
@@ -251,6 +257,57 @@ public class ViewAppointmentsController implements Initializable
         endColumn.setCellValueFactory(new PropertyValueFactory<>("endTimeLocal"));
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
-        appointmentTable.setItems(DBAppointments.getAllAppointments());
+        FilteredList<Appointment> filteredData = new FilteredList<>(DBAppointments.getAllAppointments(), b -> true);
+
+        searchFieldId.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(appointment -> {
+                if(newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCasedFilter = newValue.toLowerCase();
+
+                if(appointment.getTitle().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(String.valueOf(appointment.getAppointmentId()).toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+                if(appointment.getDescription().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+                if(appointment.getLocation().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+                if(appointment.getContactName().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+                if(appointment.getType().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(appointment.getStart().toString().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(appointment.getEnd().toString().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(String.valueOf(appointment.getCustomerId()).toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+
+                return false;
+            });
+        });
+
+        SortedList<Appointment> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(appointmentTable.comparatorProperty());
+
+        appointmentTable.setItems(sortedData);
     }
 }

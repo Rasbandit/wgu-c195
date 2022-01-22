@@ -5,11 +5,12 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: GRAY; -fx-border-color: BLUE; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewAppointmentsController">
+<AnchorPane maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: GRAY; -fx-border-color: BLUE; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewAppointmentsController">
    <children>
       <Label layoutX="10.0" layoutY="10.0" text="APPOINTMENTS">
          <font>
@@ -54,6 +55,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+      <TextField fx:id="searchFieldId" layoutX="700.0" layoutY="160.0" promptText="Search" />
       <RadioButton fx:id="viewByWeekRadioButton" layoutX="100.0" layoutY="160.0" mnemonicParsing="false" onAction="#onActionViewByWeek" text="CURRENT WEEK">
          <font>
             <Font size="16.0" />

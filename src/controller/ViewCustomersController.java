@@ -1,6 +1,9 @@
 package controller;
 
+import DAO.DBAppointments;
 import DAO.DBCustomers;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Customer;
 
 import java.io.IOException;
@@ -26,6 +30,10 @@ public class ViewCustomersController implements Initializable
 {
     Stage stage;
     Parent scene;
+
+    /** Search field for appointments */
+    @FXML
+    private TextField searchFieldId;
 
     /** Table for customer information. */
     @FXML
@@ -185,7 +193,49 @@ public class ViewCustomersController implements Initializable
         divisionColumn.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
         postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        
-        customerTable.setItems(DBCustomers.getAllCustomers());
+
+        FilteredList<Customer> filteredData = new FilteredList<>(DBCustomers.getAllCustomers(), b -> true);
+
+        searchFieldId.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(customer -> {
+                if(newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCasedFilter = newValue.toLowerCase();
+
+                if(customer.getCustomerName().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(customer.getAddress().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(customer.getPhone().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(customer.getPostalCode().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(customer.getDivisionName().toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                if(String.valueOf(customer.getCustomerId()).toLowerCase().indexOf(lowerCasedFilter) != -1) {
+                    return true;
+                }
+
+                return false;
+            });
+        });
+
+        SortedList<Customer> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(customerTable.comparatorProperty());
+
+        customerTable.setItems(sortedData);
     }
 }
